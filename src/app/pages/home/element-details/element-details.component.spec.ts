@@ -24,18 +24,23 @@ describe('ElementDetailsComponent', () => {
     author: "Google"
   }]
 
+  const observableData = of({
+    elementDetails: resConfig
+  });
+
   const fakeActivatedRoute = {
-    snapshot: { 
-      data: {
-        elementDetails: from([resConfig])
-      } 
-    }
-  } as ActivatedRoute | any; 
+    data: observableData
+  }; 
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ ElementDetailsComponent ],
-      imports: [ HttpClientModule, HomeRoutingModule, SharedModule ],
+      imports: [ 
+        HttpClientModule, 
+        RouterTestingModule.withRoutes([]), 
+        HomeModule, 
+        SharedModule 
+      ],
       providers: [ 
         ElementsService,
         {provide: ActivatedRoute, useValue: fakeActivatedRoute}
@@ -47,19 +52,6 @@ describe('ElementDetailsComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
-
-  beforeEach(() =>
-    MockBuilder(
-      // Things to keep and export.
-      [
-        ElementDetailsResolver,
-        HomeRoutingModule,
-        RouterTestingModule.withRoutes([]),
-      ],
-      // Things to mock.
-      HomeModule,
-    ).exclude(NG_MOCKS_GUARDS)
-  );
 
   it('provides data to on the route', fakeAsync(() => {
     const fixture = MockRender(RouterOutlet);
@@ -88,13 +80,9 @@ describe('ElementDetailsComponent', () => {
     const route: ActivatedRoute = el.injector.get(ActivatedRoute);
 
     // Now we can assert that it has expected data.
-    expect(route.snapshot.data).toEqual(
-      jasmine.objectContaining({
-        data: {
-          elementDetails: resConfig
-        },
-      }),
-    );
+    route.data.subscribe(data => {
+      expect(data).toEqual({ elementDetails: resConfig });
+    })
   }));
 
   it('should create', () => {
