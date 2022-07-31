@@ -1,0 +1,7 @@
+<div class="list-items" [ngClass]="{ 'active': isActive }">
+    <!-- (click)="elementDetails(element.slug)" -->
+    <p *ngFor="let element of elements$ | async"
+        routerLink="./{{element.slug}}">
+        {{element.title}}
+    </p>
+</div>

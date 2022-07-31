@@ -1,0 +1,41 @@
+.header {
+    background-image: linear-gradient(
+        to right bottom,
+        rgba(#796fd5, 0.8),
+        rgba(#3128b4, 0.8)),
+    url(../../../../assets/images/hero-small.jpg);
+    background-size: cover;
+    background-position: top;
+    position: relative;
+    height: 100vh;
+    
+    &__text-box {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+}
+
+.heading-primary {
+    color: #fff;
+    text-transform: uppercase;
+
+    backface-visibility: hidden;
+    margin-bottom: 4rem;
+
+    &--main {
+        display: block;
+        font-size: 4rem;
+        font-weight: 400;
+        letter-spacing: 1rem;
+    }
+    
+    &--sub {
+        display: block;
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: 1rem;
+    }
+}

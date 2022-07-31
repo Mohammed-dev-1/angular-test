@@ -1,0 +1,24 @@
+<header class="header">
+    <div class="header__text-box">
+        <h1 class="heading-primary">
+            <span class="heading-primary--main">
+                Number of element <span style="text-decoration: underline;">{{numberOfElement}}</span>
+            </span>
+            <span class="heading-primary--sub">Type to find something cool</span>
+        </h1>
+        
+        <form>
+            <input type="text" 
+                (focus)="onFocus()"
+                (focusout)="onFocusout()"
+                [formControl]="searchField"
+                placeholder="type here ..." 
+                class="input input-light input-small">
+        </form>
+
+        <app-list-items 
+            [elements$]="elements$"
+            [isActive]="numberOfElement > 0">
+        </app-list-items>
+    </div>
+</header>

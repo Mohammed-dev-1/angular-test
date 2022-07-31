@@ -1,0 +1,15 @@
+.element-details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__card {
+        align-items: flex-start;
+        p {
+            font-size: 1.5rem;
+        }
+        button {
+            margin-top: 2rem;
+        }
+    }
+}
