@@ -10,15 +10,15 @@ import { IElement } from '../interfaces/element.interface';
 })
 export class ElementDetailsComponent implements OnInit {
   elementDetails!: IElement;
+  
   constructor(
     private readonly activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
     this.activatedRoute.data
-      .pipe(map((elements: any) => elements.elementDetails[0]))
-      .subscribe(details => {
-        this.elementDetails = details;
+      .subscribe((details: any) => {
+        this.elementDetails = details.elementDetails;
       })
   }
 

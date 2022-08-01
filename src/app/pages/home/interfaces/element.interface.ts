@@ -10,5 +10,5 @@ export interface IElement {
 
 export interface IElementService {
     getElements(): Observable<IElement[]>;
-    getElementBySlug(slug: string): Observable<IElement[]>
+    getElementBySlug(slug: string): Observable<IElement>
 }

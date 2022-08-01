@@ -5,12 +5,12 @@ import { IElement } from '../interfaces/element.interface';
 import { ElementsService } from '../service/elements.service';
 
 @Injectable({ providedIn: 'root' })
-export class ElementDetailsResolver implements Resolve<IElement[]> {
+export class ElementDetailsResolver implements Resolve<IElement|null> {
     constructor(
-        private readonly elementsService: ElementsService
+        private readonly elementsService: ElementsService,
     ) {}
     
-    resolve(route: ActivatedRouteSnapshot): Observable<IElement[]> {
+    resolve(route: ActivatedRouteSnapshot): Observable<IElement|null> {
         return this.elementsService.getElementBySlug(route.params['slug']);
     }
 }

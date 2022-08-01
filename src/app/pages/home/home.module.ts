@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { HomeRoutingModule, RoutedComponent } from './home-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { StoreModule } from '@ngrx/store';
+import { HomeEffects, homeReducers } from './store';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -12,7 +15,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
     CommonModule,
     HomeRoutingModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    StoreModule.forFeature('home', homeReducers),
+    EffectsModule.forFeature([HomeEffects])
   ]
 })
 export class HomeModule { }

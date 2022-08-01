@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from "rxjs";
+import { map, Observable } from "rxjs";
 import { IElement, IElementService } from "../interfaces/element.interface";
 import { baseEndPoints, environment } from "src/environments/environment";
 
@@ -16,7 +16,7 @@ export class ElementsService implements IElementService {
         )
     }
 
-    public getElementBySlug(slug: string): Observable<IElement[]> {
+    public getElementBySlug(slug: string): Observable<IElement> {
         let httpParams = new HttpParams()
         httpParams = httpParams.append('slug', slug);
 
@@ -24,5 +24,6 @@ export class ElementsService implements IElementService {
             `${environment.testURL}/${baseEndPoints.Elements}`,
             { params: httpParams }
         )
+        .pipe(map(elements => elements[0]))
     }
 }
